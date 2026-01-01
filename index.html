@@ -1,13 +1,108 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="stylesheet" href="./src/style.css" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>validation-tool</title>
+    <title>Week 2: Form Validation Tool</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
+
   <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
+    <div id="app">
+      <div class="container">
+        <header class="header">
+          <h1>Create an Account</h1>
+          <p class="subtitle">Join our premium service today.</p>
+        </header>
+
+        <form id="registration-form" class="form" novalidate>
+          <div class="form-group">
+            <label for="username" class="form-label">Username</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              class="form-input"
+              placeholder="johndoe123"
+              autocomplete="username"
+            />
+            <span
+              id="username-error"
+              class="error-message"
+              aria-live="polite"
+            ></span>
+          </div>
+
+          <div class="form-group">
+            <label for="email" class="form-label">Email Address</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="form-input"
+              placeholder="john@example.com"
+              autocomplete="email"
+            />
+            <span
+              id="email-error"
+              class="error-message"
+              aria-live="polite"
+            ></span>
+          </div>
+
+          <div class="form-group">
+            <label for="password" class="form-label">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              class="form-input"
+              placeholder="••••••••"
+              autocomplete="new-password"
+            />
+            <span
+              id="password-error"
+              class="error-message"
+              aria-live="polite"
+            ></span>
+          </div>
+
+          <div class="form-group">
+            <label for="confirmPassword" class="form-label"
+              >Confirm Password</label
+            >
+            <input
+              type="password"
+              id="confirmPassword"
+              name="confirmPassword"
+              class="form-input"
+              placeholder="••••••••"
+              autocomplete="new-password"
+            />
+            <span
+              id="confirmPassword-error"
+              class="error-message"
+              aria-live="polite"
+            ></span>
+          </div>
+
+          <button type="submit" id="submitBtn" class="btn btn-primary">
+            Create Account yes this
+          </button>
+        </form>
+
+        <div id="success-message" class="success-message hidden">
+          Form submitted successfully!
+        </div>
+      </div>
+    </div>
+    <script type="module" src="./src/script.ts"></script>
   </body>
 </html>
