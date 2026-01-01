@@ -1,9 +1,4 @@
-/**
- * Validation Module
- * Contains all validation logic and rules
- */
-
-// Types and Interfaces
+// types and   interfaces
 export interface ValidationResult {
   isValid: boolean;
   error?: string;
@@ -16,7 +11,7 @@ export type ValidationType =
   | "confirmPassword"
   | "name";
 
-// Validation Rules
+// Validation rules for different ways to satisfy
 const isRequired = (
   message: string = "This field is required"
 ): { validate: (value: string) => boolean; errorMessage: string } => ({
@@ -42,7 +37,7 @@ const isEmail = (
   errorMessage: message,
 });
 
-// Validation Rules Configuration
+// Validation rules setup according to different input field
 const validationRules: Record<
   ValidationType,
   Array<{
@@ -68,15 +63,7 @@ const validationRules: Record<
     minLength(2, "Name must be at least 2 characters"),
   ],
 };
-
-/**
- * Main validation function
- *
- * @param type - Type of field to validate
- * @param value - Value to validate
- * @param compareValue - Optional value for comparison (used for confirmPassword)
- * @returns ValidationResult object
- */
+// this function is to check the if confirm password === password
 export function validate(
   type: ValidationType,
   value: string,
@@ -91,9 +78,8 @@ export function validate(
     };
   }
 
-  // Special handling for confirmPassword
   if (type === "confirmPassword" && compareValue !== undefined) {
-    // Check required first
+    // Check required first cuz all it matters at first
     if (value.trim().length === 0) {
       return {
         isValid: false,
@@ -124,13 +110,7 @@ export function validate(
 
   return { isValid: true };
 }
-
-/**
- * Validates an entire form by checking all fields
- *
- * @param formData - Object containing form values
- * @returns Object with validation results for each field
- */
+// check all input at once not individually
 export function validateForm(
   formData: Record<string, string>
 ): Record<string, ValidationResult> {
@@ -163,24 +143,13 @@ export function validateForm(
   return results;
 }
 
-/**
- * Helper to check if entire form is valid
- *
- * @param validationResults - Results from validateForm
- * @returns boolean indicating if all fields are valid
- */
+// give me final boolean result saying is this form ready to submit
 export function isFormValid(
   validationResults: Record<string, ValidationResult>
 ): boolean {
   return Object.values(validationResults).every((result) => result.isValid);
 }
-
-/**
- * Gets validation type based on field name
- *
- * @param fieldName - Name of the form field
- * @returns ValidationType
- */
+// conforming the type of the input field
 export function getValidationType(fieldName: string): ValidationType {
   switch (fieldName) {
     case "username":
