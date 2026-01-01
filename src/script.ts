@@ -12,16 +12,11 @@ const form = document.getElementById("registration-form") as HTMLFormElement;
 const inputs = document.querySelectorAll<HTMLInputElement>(".form-input");
 const successMessage = document.getElementById("success-message");
 
-// Check critical DOM elements exist
+// Check  DOM elements exist
 if (!form || !successMessage) {
-  throw new Error("Critical DOM elements missing");
+  throw new Error("DOM elements missing");
 }
-
-/**
- * Gets all form data as an object
- *
- * @returns Object with form field names and values
- */
+// getting form data
 const getFormData = (): Record<string, string> => {
   const data: Record<string, string> = {};
 
@@ -32,12 +27,6 @@ const getFormData = (): Record<string, string> => {
   return data;
 };
 
-/**
- * Updates the UI for a specific field based on validation result
- *
- * @param field - Input element to update
- * @param result - Validation result
- */
 const updateFieldUI = (
   field: HTMLInputElement,
   result: ValidationResult
@@ -61,11 +50,6 @@ const updateFieldUI = (
   }
 };
 
-/**
- * Validates a single field and updates its UI
- *
- * @param field - Input element to validate
- */
 const validateField = (field: HTMLInputElement): void => {
   const formData = getFormData();
   const type = getValidationType(field.name);
@@ -83,9 +67,9 @@ const validateField = (field: HTMLInputElement): void => {
   updateFieldUI(field, validationResult);
 };
 
-// Setup event listeners for real-time validation
+//  event listeners for real-time validation of the data
 inputs.forEach((input) => {
-  // Validate on blur (when user leaves the field)
+  // Validate when user leaves this field
   input.addEventListener("blur", () => {
     validateField(input);
   });
